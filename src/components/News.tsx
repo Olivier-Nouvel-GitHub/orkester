@@ -4,7 +4,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import ListItemText from "@mui/material/ListItemText";
-import FolderIcon from "@mui/icons-material/Folder";
 import { NewsItemType } from "../types/NewsItemType";
 
 export const News = (news: NewsItemType[]) => {
@@ -13,14 +12,9 @@ export const News = (news: NewsItemType[]) => {
       {news.map((item) => (
         <ListItem key={item.id}>
           <ListItemAvatar>
-            <Avatar>
-              <FolderIcon />
-            </Avatar>
+            <Avatar alt={item.title} src={item.img} />
           </ListItemAvatar>
-          <ListItemText
-            primary="Single-line item"
-            secondary="Second-Line item"
-          />
+          <ListItemText primary={item.title} secondary={item.source} />
         </ListItem>
       ))}
     </List>
