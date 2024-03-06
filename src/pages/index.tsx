@@ -1,4 +1,4 @@
-import Layout from "../app/layout";
+import Layout from "../components/layout/MainLayout";
 import Typography from "@mui/material/Typography";
 export function App() {
   return (

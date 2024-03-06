@@ -10,7 +10,7 @@ type LayoutProps = {
   children: ReactNode;
 };
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const MainLayout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <AppBar position="static">
@@ -43,4 +43,4 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   );
 };
 
-export default Layout;
+export default MainLayout;
