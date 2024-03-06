@@ -1,11 +1,10 @@
 import Layout from "../components/layout/MainLayout";
 import Typography from "@mui/material/Typography";
+import { News } from "../components/News";
 export function App() {
   return (
     <Layout>
-      <Typography variant="h4" component="h1" gutterBottom>
-        Here is the content
-      </Typography>
+      <div>yes</div>
     </Layout>
   );
 }

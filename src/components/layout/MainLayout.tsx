@@ -26,7 +26,7 @@ const MainLayout: React.FC<LayoutProps> = ({ children }) => {
         sx={{ textAlign: "center", py: 3, mt: 4, backgroundColor: "#f5f5f5" }}
       >
         <Typography variant="subtitle1">
-          Power by{" "}
+          Powered by{" "}
           <Link
             href="https://newsapi.org/"
             sx={{
