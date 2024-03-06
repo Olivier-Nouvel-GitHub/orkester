@@ -8,5 +8,10 @@
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.63",
     "typescript": "^5.3.3"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   }
 }
