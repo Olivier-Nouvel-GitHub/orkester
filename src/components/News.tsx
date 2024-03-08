@@ -6,11 +6,11 @@ import Avatar from "@mui/material/Avatar";
 import ListItemText from "@mui/material/ListItemText";
 import { NewsItemType } from "../types/NewsItemType";
 
-export const News = (news: NewsItemType[]) => {
+export const News = ({ news }: { news: NewsItemType[] }) => {
   return (
     <List dense>
       {news.map((item) => (
-        <ListItem key={item.id}>
+        <ListItem key={item.title}>
           <ListItemAvatar>
             <Avatar alt={item.title} src={item.img} />
           </ListItemAvatar>
