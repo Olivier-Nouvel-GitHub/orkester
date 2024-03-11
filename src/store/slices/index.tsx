@@ -1,8 +1,8 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import exampleReducer from "./testSlices";
+import newsReducer from "../slices/newsSlices";
 
 const rootReducer = combineReducers({
-  example: exampleReducer,
+  news: newsReducer,
 });
 
 export default rootReducer;

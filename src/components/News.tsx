@@ -4,7 +4,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import ListItemText from "@mui/material/ListItemText";
-import { NewsItemType } from "../types/NewsItemType";
+import { NewsItemType } from "../types/dataTypes";
 
 export const News = ({ news }: { news: NewsItemType[] }) => {
   return (
