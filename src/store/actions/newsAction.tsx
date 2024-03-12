@@ -6,22 +6,15 @@ import {
   FetchNewsSuccessAction,
   FetchNewsFailureAction,
 } from "../../types/actionTypes";
-
+import { createAction } from "@reduxjs/toolkit";
 import { NewsItemType } from "../../types/dataTypes";
 
-export const fetchNewsRequest = (query: string): FetchNewsRequestAction => ({
-  type: FETCH_NEWS_REQUEST,
-  payload: { query },
-});
-
-export const fetchNewsSuccess = (
-  articles: NewsItemType[]
-): FetchNewsSuccessAction => ({
-  type: FETCH_NEWS_SUCCESS,
-  payload: { articles },
-});
-
-export const fetchNewsFailure = (error: string): FetchNewsFailureAction => ({
-  type: FETCH_NEWS_FAILURE,
-  payload: error,
-});
+export const fetchNewsRequest = createAction<{ query: string }>(
+  "FETCH_NEWS_REQUEST"
+);
+export const fetchNewsSuccess = createAction<{ articles: NewsItemType[] }>(
+  "FETCH_NEWS_SUCCESS"
+);
+export const fetchNewsFailure = createAction<{ error: string }>(
+  "FETCH_NEWS_FAILURE"
+);

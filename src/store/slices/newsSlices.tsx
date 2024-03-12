@@ -1,11 +1,8 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../types/storeTypes";
-import {
-  fetchNewsRequest,
-  fetchNewsSuccess,
-  fetchNewsFailure,
-} from "../actions/newsAction";
+
 import { NewsItemType } from "../../types/dataTypes";
+import { FETCH_NEWS_REQUEST } from "../../types/actionTypes";
 
 interface NewsState {
   articles: NewsItemType[]; // Stock les articles de presse
@@ -24,7 +21,7 @@ const newsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase("fetchNewsRequest", (state) => {
+    builder.addCase(FETCH_NEWS_REQUEST, (state) => {
       // Mettez à jour l'état pour indiquer que la requête est en cours
       state.loading = true;
       state.error = null; // Réinitialisez l'erreur à null

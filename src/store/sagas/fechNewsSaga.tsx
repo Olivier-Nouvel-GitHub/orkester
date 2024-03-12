@@ -5,8 +5,9 @@ import {
   FETCH_NEWS_REQUEST,
   FETCH_NEWS_SUCCESS,
   FETCH_NEWS_FAILURE,
-  FetchNewsRequestAction,
 } from "../../types/actionTypes";
+
+import { fetchNewsRequest } from "../actions/newsAction";
 
 // Fonction pour effectuer l'appel API
 function fetchNewsApi(query: string) {
@@ -16,7 +17,7 @@ function fetchNewsApi(query: string) {
 
 // Worker saga : sera déclenchée lors de l'action FETCH_NEWS_REQUEST
 function* fetchNewsSaga(
-  action: FetchNewsRequestAction
+  action: ReturnType<typeof fetchNewsRequest>
 ): Generator<Effect, void, any> {
   try {
     const data = yield call(fetchNewsApi, action.payload.query);
