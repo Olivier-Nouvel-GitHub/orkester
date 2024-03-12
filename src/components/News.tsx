@@ -5,8 +5,10 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import ListItemText from "@mui/material/ListItemText";
 import { NewsItemType } from "../types/dataTypes";
+import { useFetchNews } from "../hooks/useFetchNews";
 
 export const News = ({ news }: { news: NewsItemType[] }) => {
+  useFetchNews();
   return (
     <List dense>
       {news.map((item) => (

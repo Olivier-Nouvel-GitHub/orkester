@@ -1,8 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../types/storeTypes";
 
 import { NewsItemType } from "../../types/dataTypes";
-import { FETCH_NEWS_REQUEST } from "../../types/actionTypes";
+import {
+  fetchNewsRequest,
+  fetchNewsSuccess,
+  fetchNewsFailure,
+} from "../actions/newsAction";
 
 interface NewsState {
   articles: NewsItemType[]; // Stock les articles de presse
@@ -21,34 +25,29 @@ const newsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(FETCH_NEWS_REQUEST, (state) => {
-      // Mettez à jour l'état pour indiquer que la requête est en cours
-      state.loading = true;
-      state.error = null; // Réinitialisez l'erreur à null
-    });
-    // Ajoutez d'autres cas pour gérer FETCH_NEWS_SUCCESS et FETCH_NEWS_FAILURE si nécessaire
-    // builder.addCase(
-    //   fetchNewsSuccess,
-    //   (state, action: PayloadAction<NewsItemType[]>) => {
-    //     // Mettez à jour l'état en réponse à FETCH_NEWS_SUCCESS
-    //     state.articles = action.payload;
-    //     state.loading = false; // Marquez que le chargement est terminé
-    //   }
-    // );
-    // builder.addCase(
-    //   fetchNewsFailure,
-    //   (state, action: PayloadAction<string>) => {
-    //     // Mettez à jour l'état en réponse à FETCH_NEWS_FAILURE
-    //     state.error = action.payload;
-    //     state.loading = false; // Marquez que le chargement est terminé
-    //   }
-    // );
+    builder
+      .addCase(fetchNewsRequest, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(
+        fetchNewsSuccess,
+        (state, action: PayloadAction<{ articles: NewsItemType[] }>) => {
+          state.articles = action.payload.articles;
+          state.loading = false;
+        }
+      )
+      .addCase(
+        fetchNewsFailure,
+        (state, action: PayloadAction<{ error: string }>) => {
+          state.error = action.payload.error;
+          state.loading = false;
+        }
+      );
   },
 });
 
-export const {
-  /* exportez des réducteurs supplémentaires si nécessaire */
-} = newsSlice.actions;
+export const {} = newsSlice.actions;
 export default newsSlice.reducer;
 
 // Sélecteur pour accéder à l'état de la tranche des nouvelles

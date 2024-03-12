@@ -1,7 +1,6 @@
-import Layout from "../components/layout/MainLayout";
 import Typography from "@mui/material/Typography";
 import { News } from "../components/News";
-import { NewsItemType } from "../types/NewsItemType";
+import { NewsItemType } from "../types/dataTypes";
 export function App() {
   const newsItems: NewsItemType[] = [
     {
@@ -40,11 +39,7 @@ export function App() {
     },
   ];
 
-  return (
-    <Layout>
-      <News news={newsItems}></News>
-    </Layout>
-  );
+  return <News news={newsItems}></News>;
 }
 
 export default App;

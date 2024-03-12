@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
-import rootReducer from "./slices/testSlices";
+import rootReducer from "./slices/newsSlices";
 import rootSaga from "./sagas/index";
 
 const sagaMiddleware = createSagaMiddleware();
