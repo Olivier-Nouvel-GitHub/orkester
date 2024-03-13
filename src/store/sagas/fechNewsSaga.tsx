@@ -21,7 +21,10 @@ function* fetchNewsSaga(
 ): Generator<Effect, void, any> {
   try {
     const data = yield call(fetchNewsApi, action.payload.query);
-    yield put({ type: FETCH_NEWS_SUCCESS, payload: data.articles });
+    yield put({
+      type: FETCH_NEWS_SUCCESS,
+      payload: { articles: data.articles },
+    });
   } catch (e) {
     yield put({ type: FETCH_NEWS_FAILURE, payload: e.message });
   }

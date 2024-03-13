@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../../types/storeTypes";
-
+import { RootState } from "../index";
 import { NewsItemType } from "../../types/dataTypes";
 import {
   fetchNewsRequest,
@@ -35,6 +34,7 @@ const newsSlice = createSlice({
         (state, action: PayloadAction<{ articles: NewsItemType[] }>) => {
           state.articles = action.payload.articles;
           state.loading = false;
+          state.error = null;
         }
       )
       .addCase(
@@ -50,5 +50,4 @@ const newsSlice = createSlice({
 export const {} = newsSlice.actions;
 export default newsSlice.reducer;
 
-// Sélecteur pour accéder à l'état de la tranche des nouvelles
-export const selectNews = (state: RootState) => state.articles;
+export const selectNews = (state: RootState) => state.news.articles;

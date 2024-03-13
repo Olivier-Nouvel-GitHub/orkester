@@ -1,6 +1,8 @@
 export type NewsItemType = {
-  id: number;
-  img: string;
+  urlToImage: string;
   title: string;
-  source: string;
+  source: {
+    name: string;
+  };
+  description: string;
 };
