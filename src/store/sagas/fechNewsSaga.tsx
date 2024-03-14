@@ -14,7 +14,7 @@ import { fetchNewsRequest, fetchMoreData } from "../actions/newsAction";
 
 // Worker sagas
 function fetchArticles(query: string, page: number): Promise<any> {
-  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}?q=${query}&page=${page}&apiKey=${process.env.NEXT_PUBLIC_API_KEY}`;
+  const apiUrl = `https://newsapi.org/v2/everything?q=${query}&page=${page}&apiKey=${process.env.NEXT_PUBLIC_API_KEY}`;
   return fetch(apiUrl).then((response) => response.json());
 }
 

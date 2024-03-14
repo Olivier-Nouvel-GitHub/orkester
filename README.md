@@ -18,11 +18,7 @@ This repository contains a test for Orkester company. The main goal of this app 
 
 ## Deployment
 
-The project is deployed on Vercel at this adress
-
-```js
- https://orkester.vercel.app/
-```
+The project is deployed on Vercel at this address: [https://orkester.vercel.app/](https://orkester.vercel.app/)
 
 To deploy this app localy on your computer, clone the repository
 
@@ -30,13 +26,21 @@ To deploy this app localy on your computer, clone the repository
 git clone https://github.com/Olivier-Nouvel-GitHub/orkester.git
 ```
 
-- Navigate to the repository of the project
+- Navigate to the project's directory:
 
-```js
-cd orkester-test
-```
+  ```bash
+  cd orkester-test
 
-- Download dependancies
+  ```
+
+- Change the name of the file `.env.example` to `.env.local` and then provide the value to the apiKey env variable:
+
+  ```plaintext
+  NEXT_PUBLIC_API_KEY=your_api_key_here
+
+  ```
+
+- Download dependencies
 
 ```js
 npm install
