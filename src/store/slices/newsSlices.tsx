@@ -66,7 +66,6 @@ const newsSlice = createSlice({
         fetchMoreDataSuccess,
         (state, action: PayloadAction<{ articles: NewsItemType[] }>) => {
           state.articles = [...state.articles, ...action.payload.articles];
-          state.page = state.page + 1;
           state.loading = false;
           state.error = null;
         }
