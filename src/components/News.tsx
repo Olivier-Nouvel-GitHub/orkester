@@ -96,13 +96,12 @@ export const News = () => {
               </ListItemAvatar>
               <ListItemText
                 primary={
-                  <Link href={`/newsDetails`}>
-                    <a
-                      onClick={() => handleArticleClick(item)}
-                      style={{ textDecoration: "none", color: "inherit" }}
-                    >
-                      {item.title}
-                    </a>
+                  <Link
+                    href={`/newsDetailsPage`}
+                    onClick={() => handleArticleClick(item)}
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    {item.title}
                   </Link>
                 }
                 secondary={item.source.name}
