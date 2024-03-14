@@ -1,4 +1,5 @@
 export type NewsItemType = {
+  url: string;
   urlToImage: string;
   title: string;
   source: {
@@ -7,4 +8,5 @@ export type NewsItemType = {
   description: string;
   author: string;
   publishedAt: string;
+  autho: string;
 };

@@ -12,20 +12,24 @@ import {
 
 interface NewsState {
   articles: NewsItemType[]; // Store press articles
+  url: string | null; // url of article
   selectedArticle: NewsItemType | null; // Store the article we want to display details about
   loading: boolean; // Data loading or not
   error: string | null; // Store errors
   page: number; // actual page
   query: string; // request given by user
+  author: string | null;
 }
 
 const initialState: NewsState = {
   articles: [],
+  url: null,
   selectedArticle: null,
   loading: false,
   error: null,
   page: 1,
   query: "",
+  author: null,
 };
 
 const newsSlice = createSlice({
@@ -91,3 +95,5 @@ export default newsSlice.reducer;
 
 export const selectNews = (state: RootState) => state.news.articles;
 export const selectPage = (state: RootState) => state.news.page;
+export const selectDetailedNews = (state: RootState) =>
+  state.news.selectedArticle;

@@ -5,15 +5,16 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import ListItemText from "@mui/material/ListItemText";
 import Grid from "@mui/material/Grid";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectNews } from "../store/slices/newsSlices";
 import { useFetchNews } from "../hooks/useFetchNews";
 import { useFetchMoreData } from "../hooks/useFetchMoreData";
-import { useStoreNewsDetails } from "../hooks/useStoreNewsDetails";
 import Link from "next/link";
 import { NewsItemType } from "../types/dataTypes";
+import { setSelectedArticle } from "../store/slices/newsSlices";
 
 export const News = () => {
+  const dispatch = useDispatch();
   const news = useSelector(selectNews);
   const loader = useRef(null);
   const isComponentMounted = useRef(false);
@@ -25,7 +26,7 @@ export const News = () => {
   useFetchMoreData(loadMore);
 
   const handleArticleClick = (item: NewsItemType) => {
-    useStoreNewsDetails(item);
+    dispatch(setSelectedArticle(item));
   };
 
   useEffect(() => {
