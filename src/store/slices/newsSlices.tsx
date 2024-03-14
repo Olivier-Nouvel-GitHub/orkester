@@ -59,7 +59,7 @@ const newsSlice = createSlice({
       .addCase(
         fetchNewsSuccess,
         (state, action: PayloadAction<{ articles: NewsItemType[] }>) => {
-          state.articles = action.payload.articles;
+          state.articles = action.payload.articles || [];
           state.loading = false;
           state.error = null;
         }

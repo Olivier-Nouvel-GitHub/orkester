@@ -35,6 +35,7 @@ export const News = () => {
   const [filterName, setFilterName] = useState<string>("");
   const [filterValue, setFilterValue] = useState("");
 
+  console.log(news);
   useFetchNews();
   useFetchMoreData(loadMore);
 
@@ -53,7 +54,12 @@ export const News = () => {
   };
 
   const filteredResearch = () => {
-    const newFilter = `&${filterName}=${filterValue}`;
+    let newFilter = "";
+    if (filterName == "language") {
+      newFilter = `*&${filterName}=${filterValue}`;
+    } else {
+      newFilter = `${filterValue}&searchIn=${filterName}`;
+    }
     dispatch(setFilter(newFilter));
   };
 
@@ -101,6 +107,10 @@ export const News = () => {
 
   if (!news) {
     return <div>Loading...</div>;
+  }
+
+  if (!news || news.length === 0) {
+    return <div>No news articles found.</div>;
   }
 
   return (
