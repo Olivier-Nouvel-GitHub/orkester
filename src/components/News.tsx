@@ -15,19 +15,19 @@ export const News = () => {
   const loader = useRef(null);
   const isComponentMounted = useRef(false);
   const [loadMore, setLoadMore] = useState(false);
-  // Nouvel état pour contrôler l'initialisation de l'observation
+  // State to control initialization and observation
   const [initializeObserver, setInitializeObserver] = useState(false);
 
   useFetchNews();
   useFetchMoreData(loadMore);
 
   useEffect(() => {
-    // Après un court délai, autoriser l'observation si le composant est toujours monté
+    // After a delay, authorize the observation if component mounted to prevent prematurated observation
     const timeoutId = setTimeout(() => {
       if (isComponentMounted.current) {
         setInitializeObserver(true);
       }
-    }, 1000); // Délai de 1 seconde avant d'initialiser l'observer
+    }, 1000);
 
     return () => clearTimeout(timeoutId);
   }, []);
