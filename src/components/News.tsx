@@ -39,6 +39,10 @@ export const News = () => {
   useFetchNews();
   useFetchMoreData(loadMore);
 
+  const handleLanguageChange = (event: SelectChangeEvent) => {
+    setFilterValue(event.target.value as string);
+  };
+
   const handleFilterNameChange = (event: SelectChangeEvent<string>) => {
     setFilterName(event.target.value as string);
   };
@@ -143,14 +147,33 @@ export const News = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={2}>
-            <TextField
-              id="standard-basic"
-              label="Research"
-              variant="standard"
-              value={filterValue}
-              onChange={handleFilterValueChange}
-            />
+          <Grid item xs={4}>
+            {filterName === "language" ? (
+              <FormControl fullWidth>
+                <InputLabel id="language-select-label">Language</InputLabel>
+                <Select
+                  labelId="language-select-label"
+                  id="language-select"
+                  value={filterValue}
+                  label="language"
+                  onChange={handleLanguageChange}
+                >
+                  <MenuItem value="en">English</MenuItem>
+                  <MenuItem value="fr">French</MenuItem>
+                  <MenuItem value="de">German</MenuItem>
+                  <MenuItem value="it">Italian</MenuItem>
+                  <MenuItem value="ru">Russian</MenuItem>
+                </Select>
+              </FormControl>
+            ) : (
+              <TextField
+                id="standard-basic"
+                label="Research"
+                variant="standard"
+                value={filterValue}
+                onChange={handleFilterValueChange}
+              />
+            )}
           </Grid>
           <Grid item xs={1} display="flex" justifyContent="flex-start">
             <Button size="small" onClick={filteredResearch}>
