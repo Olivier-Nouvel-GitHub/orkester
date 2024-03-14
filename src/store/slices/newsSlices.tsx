@@ -19,6 +19,7 @@ interface NewsState {
   page: number; // actual page
   query: string; // request given by user
   author: string | null;
+  filter: string | null; // Parameter to filter requests
 }
 
 const initialState: NewsState = {
@@ -30,6 +31,7 @@ const initialState: NewsState = {
   page: 1,
   query: "",
   author: null,
+  filter: "*",
 };
 
 const newsSlice = createSlice({
@@ -38,6 +40,9 @@ const newsSlice = createSlice({
   reducers: {
     setSelectedArticle(state, action: PayloadAction<NewsItemType>) {
       state.selectedArticle = action.payload;
+    },
+    setFilter(state, action: PayloadAction<string>) {
+      state.filter = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -54,7 +59,7 @@ const newsSlice = createSlice({
       .addCase(
         fetchNewsSuccess,
         (state, action: PayloadAction<{ articles: NewsItemType[] }>) => {
-          state.articles = [...state.articles, ...action.payload.articles];
+          state.articles = action.payload.articles;
           state.loading = false;
           state.error = null;
         }
@@ -90,10 +95,11 @@ const newsSlice = createSlice({
   },
 });
 
-export const { setSelectedArticle } = newsSlice.actions;
+export const { setSelectedArticle, setFilter } = newsSlice.actions;
 export default newsSlice.reducer;
 
 export const selectNews = (state: RootState) => state.news.articles;
 export const selectPage = (state: RootState) => state.news.page;
 export const selectDetailedNews = (state: RootState) =>
   state.news.selectedArticle;
+export const selectFilter = (state: RootState) => state.news.filter;

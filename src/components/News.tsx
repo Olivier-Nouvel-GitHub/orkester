@@ -22,6 +22,7 @@ import {
   SelectChangeEvent,
   TextField,
 } from "@mui/material";
+import { setFilter } from "../store/slices/newsSlices";
 
 export const News = () => {
   const dispatch = useDispatch();
@@ -31,17 +32,29 @@ export const News = () => {
   const [loadMore, setLoadMore] = useState(false);
   // State to control initialization and observation
   const [initializeObserver, setInitializeObserver] = useState(false);
-  const [filterValue, setFilterValue] = useState<string>("");
+  const [filterName, setFilterName] = useState<string>("");
+  const [filterValue, setFilterValue] = useState("");
 
   useFetchNews();
   useFetchMoreData(loadMore);
 
-  const handleChange = (event: SelectChangeEvent<string>) => {
-    setFilterValue(event.target.value as string);
+  const handleFilterNameChange = (event: SelectChangeEvent<string>) => {
+    setFilterName(event.target.value as string);
+  };
+
+  const handleFilterValueChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setFilterValue(event.target.value);
   };
 
   const handleArticleClick = (item: NewsItemType) => {
     dispatch(setSelectedArticle(item));
+  };
+
+  const filteredResearch = () => {
+    const newFilter = `&${filterName}=${filterValue}`;
+    dispatch(setFilter(newFilter));
   };
 
   useEffect(() => {
@@ -109,12 +122,13 @@ export const News = () => {
               <Select
                 labelId="select-filter"
                 id="select-filter-component"
-                value={filterValue}
+                value={filterName}
                 label="Parameter"
-                onChange={handleChange}
+                onChange={handleFilterNameChange}
               >
                 <MenuItem value="title">Title</MenuItem>
-                <MenuItem value="source">Source</MenuItem>
+                <MenuItem value="sources">Description</MenuItem>
+                <MenuItem value="content">Content</MenuItem>
                 <MenuItem value="language">Language</MenuItem>
               </Select>
             </FormControl>
@@ -124,10 +138,14 @@ export const News = () => {
               id="standard-basic"
               label="Research"
               variant="standard"
+              value={filterValue}
+              onChange={handleFilterValueChange}
             />
           </Grid>
           <Grid item xs={1} display="flex" justifyContent="flex-start">
-            <Button size="small">Go</Button>
+            <Button size="small" onClick={filteredResearch}>
+              Go
+            </Button>
           </Grid>
         </Grid>
       </Paper>
