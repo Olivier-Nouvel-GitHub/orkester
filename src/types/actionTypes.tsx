@@ -5,6 +5,7 @@ export const FETCH_NEWS_FAILURE = "FETCH_NEWS_FAILURE";
 export const FETCH_MORE_DATA = "FETCH_MORE_DATA";
 export const FETCH_MORE_DATA_SUCCESS = "FETCH_MORE_DATA_SUCCESS";
 export const FETCH_MORE_DATA_FAILURE = "FETCH_MORE_DATA_FAILURE";
+export const STORE_NEWS_DETAILS = "STORE_NEWS_DETAILS";
 
 export interface FetchNewsRequestAction {
   type: typeof FETCH_NEWS_REQUEST;
@@ -49,10 +50,18 @@ export interface FetchMoreDataFailureAction {
   };
 }
 
+export interface StoreNewsDetailsAction {
+  type: typeof STORE_NEWS_DETAILS;
+  payload: {
+    newsDetails: NewsItemType;
+  };
+}
+
 export type NewsActionTypes =
   | FetchNewsRequestAction
   | FetchNewsSuccessAction
   | FetchNewsFailureAction
   | FetchMoreDataAction
   | FetchMoreDataSuccessAction
-  | FetchMoreDataFailureAction;
+  | FetchMoreDataFailureAction
+  | StoreNewsDetailsAction;

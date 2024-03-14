@@ -11,15 +11,17 @@ import {
 } from "../actions/newsAction";
 
 interface NewsState {
-  articles: NewsItemType[]; // Stock les articles de presse
-  loading: boolean; // Info si les données sont en cours de chargement
-  error: string | null; // Stock les erreurs en cas d'échec de récupération
-  page: number;
-  query: string; // requête lancée par un user
+  articles: NewsItemType[]; // Store press articles
+  selectedArticle: NewsItemType | null; // Store the article we want to display details about
+  loading: boolean; // Data loading or not
+  error: string | null; // Store errors
+  page: number; // actual page
+  query: string; // request given by user
 }
 
 const initialState: NewsState = {
   articles: [],
+  selectedArticle: null,
   loading: false,
   error: null,
   page: 1,
@@ -29,7 +31,11 @@ const initialState: NewsState = {
 const newsSlice = createSlice({
   name: "news",
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedArticle(state, action: PayloadAction<NewsItemType>) {
+      state.selectedArticle = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(
@@ -80,7 +86,7 @@ const newsSlice = createSlice({
   },
 });
 
-export const {} = newsSlice.actions;
+export const { setSelectedArticle } = newsSlice.actions;
 export default newsSlice.reducer;
 
 export const selectNews = (state: RootState) => state.news.articles;
