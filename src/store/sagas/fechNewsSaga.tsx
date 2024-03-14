@@ -27,6 +27,7 @@ function* fetchNewsSaga(
       action.payload.query,
       action.payload.page
     );
+    console.log(data);
     yield put({
       type: FETCH_NEWS_SUCCESS,
       payload: { articles: data.articles, page: action.payload.page },
@@ -40,7 +41,7 @@ function* fetchMoreDataSaga(
   action: ReturnType<typeof fetchMoreData>
 ): Generator<Effect, void, any> {
   try {
-    const query = yield select((state) => state.news.query); // We access user query in the store
+    const query = yield select((state) => state.news.query); // We access user query in the
     const page = yield select((state) => state.news.page);
     const nextPageData = yield call(fetchArticles, query, page);
     yield put({

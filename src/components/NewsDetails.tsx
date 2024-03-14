@@ -51,7 +51,7 @@ export const NewsDetails = () => {
               </Link>
             </Button>
             <Button size="small">
-              <Link href={newsDetails.url} underline="none">
+              <Link href={newsDetails.url} target="_blank" underline="none">
                 See the article
               </Link>
             </Button>

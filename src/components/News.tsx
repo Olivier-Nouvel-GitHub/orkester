@@ -35,7 +35,6 @@ export const News = () => {
   const [filterName, setFilterName] = useState<string>("");
   const [filterValue, setFilterValue] = useState("");
 
-  console.log(news);
   useFetchNews();
   useFetchMoreData(loadMore);
 
@@ -45,6 +44,7 @@ export const News = () => {
 
   const handleFilterNameChange = (event: SelectChangeEvent<string>) => {
     setFilterName(event.target.value as string);
+    setFilterValue("");
   };
 
   const handleFilterValueChange = (

@@ -44,6 +44,9 @@ const newsSlice = createSlice({
     setFilter(state, action: PayloadAction<string>) {
       state.filter = action.payload;
     },
+    setResetStore(state, action: PayloadAction<NewsItemType[]>) {
+      state.articles = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -95,7 +98,8 @@ const newsSlice = createSlice({
   },
 });
 
-export const { setSelectedArticle, setFilter } = newsSlice.actions;
+export const { setSelectedArticle, setFilter, setResetStore } =
+  newsSlice.actions;
 export default newsSlice.reducer;
 
 export const selectNews = (state: RootState) => state.news.articles;
