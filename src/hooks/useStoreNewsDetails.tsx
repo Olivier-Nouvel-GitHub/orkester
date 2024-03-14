@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { storeNewsDetails } from "../store/actions/newsAction";
+import { setSelectedArticle } from "../store/slices/newsSlices";
+import { NewsItemType } from "../types/dataTypes";
 
-export const useStoreNewsDetails = (newsDetails: newsDetails) => {
+export const useStoreNewsDetails = (newsDetails: NewsItemType) => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(storeNewsDetails({ details: details }));
-  }, [dispatch]);
+    dispatch(setSelectedArticle(newsDetails));
+  }, [dispatch, newsDetails]);
 };

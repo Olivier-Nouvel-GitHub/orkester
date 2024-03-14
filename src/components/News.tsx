@@ -9,6 +9,9 @@ import { useSelector } from "react-redux";
 import { selectNews } from "../store/slices/newsSlices";
 import { useFetchNews } from "../hooks/useFetchNews";
 import { useFetchMoreData } from "../hooks/useFetchMoreData";
+import { useStoreNewsDetails } from "../hooks/useStoreNewsDetails";
+import Link from "next/link";
+import { NewsItemType } from "../types/dataTypes";
 
 export const News = () => {
   const news = useSelector(selectNews);
@@ -21,9 +24,8 @@ export const News = () => {
   useFetchNews();
   useFetchMoreData(loadMore);
 
-  const handleArticleClick = () => {
-    navigateToNewsDetails(setSelectedArticleId(article.id));
-    // To do : navigation to new page
+  const handleArticleClick = (item: NewsItemType) => {
+    useStoreNewsDetails(item);
   };
 
   useEffect(() => {
@@ -92,7 +94,19 @@ export const News = () => {
               <ListItemAvatar>
                 <Avatar alt={item.title} src={item.urlToImage} />
               </ListItemAvatar>
-              <ListItemText primary={item.title} secondary={item.source.name} />
+              <ListItemText
+                primary={
+                  <Link href={`/newsDetails`}>
+                    <a
+                      onClick={() => handleArticleClick(item)}
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      {item.title}
+                    </a>
+                  </Link>
+                }
+                secondary={item.source.name}
+              />
             </ListItem>
           ))}
           <div ref={loader} style={{ height: "1px" }}></div>
