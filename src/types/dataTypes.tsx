@@ -5,4 +5,6 @@ export type NewsItemType = {
     name: string;
   };
   description: string;
+  author: string;
+  publishedAt: string;
 };

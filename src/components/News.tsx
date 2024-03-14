@@ -21,6 +21,11 @@ export const News = () => {
   useFetchNews();
   useFetchMoreData(loadMore);
 
+  const handleArticleClick = () => {
+    navigateToNewsDetails(setSelectedArticleId(article.id));
+    // To do : navigation to new page
+  };
+
   useEffect(() => {
     // After a delay, authorize the observation if component mounted to prevent prematurated observation
     const timeoutId = setTimeout(() => {

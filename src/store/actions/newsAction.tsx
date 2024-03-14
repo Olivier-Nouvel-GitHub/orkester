@@ -21,3 +21,7 @@ export const fetchMoreDataSuccess = createAction<{
 export const fetchMoreDataFailure = createAction<{ error: string }>(
   "FETCH_MORE_DATA_FAILURE"
 );
+
+export const storeNewsDetails = createAction<{ news: NewsItemType }>(
+  "STORE_NEWS_DETAILS"
+);
