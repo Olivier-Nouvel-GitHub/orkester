@@ -1,6 +1,6 @@
 import { all } from "redux-saga/effects";
-import { watchFetchNews } from "../sagas/fechNewsSaga";
+import { watchFetchNews, watchFetchMoreData } from "../sagas/fechNewsSaga";
 
 export default function* rootSaga() {
-  yield all([watchFetchNews()]);
+  yield all([watchFetchNews(), watchFetchMoreData()]);
 }

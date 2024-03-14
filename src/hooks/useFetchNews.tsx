@@ -5,6 +5,6 @@ import { fetchNewsRequest } from "../store/actions/newsAction";
 export const useFetchNews = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchNewsRequest({ query: "*" }));
+    dispatch(fetchNewsRequest({ query: "*", page: 1 }));
   }, [dispatch]);
 };
