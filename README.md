@@ -18,8 +18,6 @@ This repository contains a test for Orkester company. The main goal of this app 
 
 ## Deployment
 
-The project is deployed on Vercel at this address: [https://orkester.vercel.app/](https://orkester.vercel.app/)
-
 To deploy this app localy on your computer, clone the repository
 
 ```js
